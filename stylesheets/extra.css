@@ -1,0 +1,46 @@
+/* Article-style layout (inspired by report/blog layout) */
+.md-grid {
+  max-width: 52rem; /* ~832px – readable single column */
+}
+
+.md-content__inner {
+  padding-bottom: 2rem;
+}
+
+.md-content__inner::before {
+  content: "";
+  display: block;
+  height: 0.05rem;
+  background: var(--md-default-fg-color--lightest, #eee);
+  margin-bottom: 1.5rem;
+}
+
+/* Slightly softer headings */
+.md-content h1 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5em;
+}
+
+.md-content h2 {
+  font-weight: 600;
+  margin-top: 1.75em;
+  padding-bottom: 0.25em;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest, #eee);
+}
+
+.md-content p {
+  line-height: 1.7;
+}
+
+/* Lists and block spacing */
+.md-content ul,
+.md-content ol {
+  margin: 0.75em 0;
+}
+
+.md-content hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid var(--md-default-fg-color--lightest, #eee);
+}
