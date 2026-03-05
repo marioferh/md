@@ -1,6 +1,6 @@
-/* Article-style layout (inspired by report/blog layout) */
+/* Article-style layout – wide content like GitHub markdown view */
 .md-grid {
-  max-width: 52rem; /* ~832px – readable single column */
+  max-width: 90rem; /* ~1440px – wide middle column */
 }
 
 .md-content__inner {
