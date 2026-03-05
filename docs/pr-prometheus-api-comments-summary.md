@@ -20,13 +20,13 @@
 
 ---
 
-## Executive summary
+## [Executive summary](#executive-summary)
 
 The high number of comments comes from (1) **very large PRs** (size/XXL, thousands of lines across types, CRDs, OpenAPI, and tests), (2) **multiple review cycles** across four PRs (2463 → 2630 → 2652 → 2653) with 2463 and 2630 becoming hard to load, (3) **heavy automated feedback** from CodeRabbit (actionable comments, nitpicks, and many "Additional comments" / LGTM-style items), and (4) **many small topics** (validation, docs, types, defaults, remote write, relabel, TLS, volumeClaimTemplate, etc.). Human review from **everettraven** (and JoelSpeed, danielmellado, simonpasquier) drove most of the design decisions; CodeRabbit repeated similar points across CRD variants and files. This document groups feedback **by theme** so a follow-up AI or human can see what was asked per topic and what was resolved.
 
 ---
 
-## 1. volumeClaimTemplate / PVC type
+## [1. volumeClaimTemplate / PVC type](#1-volumeclaimtemplate-pvc-type)
 
 **Status:** Resolved (in current code).
 
@@ -39,7 +39,7 @@ The high number of comments comes from (1) **very large PRs** (size/XXL, thousan
 
 ---
 
-## 2. RelabelConfig / RelabelAction
+## [2. RelabelConfig / RelabelAction](#2-relabelconfig-relabelaction)
 
 **Status:** Resolved (enum with 11 actions; RelabelActionConfig with type + configs per action). Optional: document that RE2 regex is validated at runtime.
 
@@ -52,7 +52,7 @@ The high number of comments comes from (1) **very large PRs** (size/XXL, thousan
 
 ---
 
-## 3. AuthorizationConfig / TLSConfig / SecretKeySelector
+## [3. AuthorizationConfig / TLSConfig / SecretKeySelector](#3-authorizationconfig-tlsconfig-secretkeyselector)
 
 **Status:** Resolved (TLS cert/key CEL; union with discriminator; SecretKeySelector has no optional field in this API).
 
@@ -64,7 +64,7 @@ The high number of comments comes from (1) **very large PRs** (size/XXL, thousan
 
 ---
 
-## 4. RemoteWrite
+## [4. RemoteWrite](#4-remotewrite)
 
 **Status:** Resolved (Headers as `[]PrometheusRemoteWriteHeader`; listMapKey=name; auth/TLS in RemoteWriteSpec; name documented when omitted).
 
@@ -78,7 +78,7 @@ The high number of comments comes from (1) **very large PRs** (size/XXL, thousan
 
 ---
 
-## 5. Validation (general)
+## [5. Validation (general)](#5-validation-general)
 
 **Status:** Mostly resolved (validations in types). Pending: ensure generated OpenAPI/CRDs reflect all markers after `make update`.
 
@@ -92,7 +92,7 @@ The high number of comments comes from (1) **very large PRs** (size/XXL, thousan
 
 ---
 
-## 6. Documentation
+## [6. Documentation](#6-documentation)
 
 **Status:** Partial. PrometheusConfig.logLevel already says "Prometheus"; no external links. **Pending:** LogLevel type (generic), LogLevel constants (full sentences), pathPrefix v2 example.
 
@@ -108,7 +108,7 @@ The high number of comments comes from (1) **very large PRs** (size/XXL, thousan
 
 ---
 
-## 7. Defaults and API contract
+## [7. Defaults and API contract](#7-defaults-and-api-contract)
 
 **Status:** Resolved (no fixed default for scheme in schema; "no opinion" wording on optional fields).
 
@@ -119,7 +119,7 @@ The high number of comments comes from (1) **very large PRs** (size/XXL, thousan
 
 ---
 
-## 8. pathPrefix / scheme / staticConfigs
+## [8. pathPrefix / scheme / staticConfigs](#8-pathprefix-scheme-staticconfigs)
 
 **Status:** Validations and scheme OK. **Pending:** in pathPrefix, change example from `/api/v1/alerts` to `/api/v2/alerts` if Alertmanager API only exposes v2.
 
@@ -131,7 +131,7 @@ The high number of comments comes from (1) **very large PRs** (size/XXL, thousan
 
 ---
 
-## 9. LogLevel
+## [9. LogLevel](#9-loglevel)
 
 **Status:** Pending. In `types_cluster_monitoring.go`: (1) `LogLevel` type (line ~300) still says "emitted by Alertmanager" → use generic wording; (2) LogLevelWarn, LogLevelInfo, LogLevelDebug constants (lines ~308-312) use leading comma → use full sentence (e.g. "LogLevelWarn logs warnings and errors.").
 
@@ -142,7 +142,7 @@ The high number of comments comes from (1) **very large PRs** (size/XXL, thousan
 
 ---
 
-## 10. Process / PR management
+## [10. Process / PR management](#10-process-pr-management)
 
 **Summary:** PR size, splitting, closing in favor of newer PRs, CI failures (verify-crd-schema, verify-crdify), rebase, conflict markers.
 
@@ -158,7 +158,7 @@ The high number of comments comes from (1) **very large PRs** (size/XXL, thousan
 
 ---
 
-## 11. Bots / automation
+## [11. Bots / automation](#11-bots-automation)
 
 **Summary:** CodeRabbit actionable vs nitpick vs "Additional comments"; openshift-ci; docstring coverage; kubeapilinter.
 
@@ -171,7 +171,7 @@ The high number of comments comes from (1) **very large PRs** (size/XXL, thousan
 
 ---
 
-## 12. Other / uncategorized
+## [12. Other / uncategorized](#12-other-uncategorized)
 
 - **[PR #2463]** **simonpasquier**: Regarding max values, some may be too low; consider leveraging Insights data for current practices.
 - **[PR #2463]** CodeRabbit: additionalAlertmanagerConfigs listMapKey (e.g. apiVersion vs name); verify minProperties with empty prometheusK8sConfig; listType=atomic vs map for multi-owner (e.g. ACM + cluster admin).
@@ -180,7 +180,7 @@ The high number of comments comes from (1) **very large PRs** (size/XXL, thousan
 
 ---
 
-## Comments remaining to address
+## [Comments remaining to address](#comments-remaining-to-address)
 
 Summary of what is still pending in code or docs according to the current repo state:
 
@@ -205,7 +205,7 @@ Summary of what is still pending in code or docs according to the current repo s
 
 ---
 
-## Per-PR index (theme anchors)
+## [Per-PR index (theme anchors)](#per-pr-index-theme-anchors)
 
 - **#2653 (open):** 2 (RelabelConfig), 3 (TLS/Authorization/SecretKeySelector), 4 (RemoteWrite), 5 (Validation), 10 (Process), 11 (Bots), 12 (Other).
 - **#2463 (closed):** 1 (volumeClaimTemplate refs), 2 (RelabelConfig), 4 (RemoteWrite), 5 (Validation), 6 (Documentation), 8 (pathPrefix/scheme/staticConfigs), 9 (LogLevel), 10 (Process), 11 (Bots), 12 (Other).
@@ -214,7 +214,7 @@ Summary of what is still pending in code or docs according to the current repo s
 
 ---
 
-## Data and limitations
+## [Data and limitations](#data-and-limitations)
 
 - **#2653** and **#2463**: Content from existing agent-tools text files (full PR page timeline). Paths: see "Saved PR content (agent-tools)" above.
 - **#2630**: Fetched via mcp_web_fetch (re-tried and re-saved); saved to agent-tools as `57fa43aa-02c1-4fce-a426-3dc504fb404d.txt` (4034 lines, 171.5 KB). Same content as earlier fetch; used for theme extraction.
@@ -224,7 +224,7 @@ Summary of what is still pending in code or docs according to the current repo s
 
 ---
 
-## Possible unresolved comments
+## [Possible unresolved comments](#possible-unresolved-comments)
 
 Feedback from the PRs that may not yet be fully resolved or that was left open / optional. Worth checking against the current branch and open PR #2653.
 
