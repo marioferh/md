@@ -1,0 +1,13 @@
+site_name: md
+site_description: Documentation and summaries
+site_url: https://marioferh.github.io/md/
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - PR Comments Summary (Prometheus Config API): pr-prometheus-api-comments-summary.md
+
+plugins:
+  - search
