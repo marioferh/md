@@ -709,7 +709,7 @@
 
 
 
-<h1 id="pr-comments-summary-prometheus-config-api">PR Comments Summary: Prometheus Config API</h1>
+<h1 id="pr-comments-summary-prometheus-config-api">PR Comments Summary: Prometheus Config API<a class="headerlink" href="#pr-comments-summary-prometheus-config-api" title="Permanent link">&para;</a></h1>
 <p><strong>Scope:</strong> Comments extracted and organized from the following pull requests:</p>
 <table>
 <thead>
@@ -775,10 +775,10 @@
 </tbody>
 </table>
 <hr />
-<h2 id="executive-summary"><a href="#executive-summary">Executive summary</a></h2>
+<h2 id="executive-summary">Executive summary<a class="headerlink" href="#executive-summary" title="Permanent link">&para;</a></h2>
 <p>The high number of comments comes from (1) <strong>very large PRs</strong> (size/XXL, thousands of lines across types, CRDs, OpenAPI, and tests), (2) <strong>multiple review cycles</strong> across four PRs (2463 → 2630 → 2652 → 2653) with 2463 and 2630 becoming hard to load, (3) <strong>heavy automated feedback</strong> from CodeRabbit (actionable comments, nitpicks, and many "Additional comments" / LGTM-style items), and (4) <strong>many small topics</strong> (validation, docs, types, defaults, remote write, relabel, TLS, volumeClaimTemplate, etc.). Human review from <strong>everettraven</strong> (and JoelSpeed, danielmellado, simonpasquier) drove most of the design decisions; CodeRabbit repeated similar points across CRD variants and files. This document groups feedback <strong>by theme</strong> so a follow-up AI or human can see what was asked per topic and what was resolved.</p>
 <hr />
-<h2 id="1-volumeclaimtemplate-pvc-type"><a href="#1-volumeclaimtemplate-pvc-type">1. volumeClaimTemplate / PVC type</a></h2>
+<h2 id="1-volumeclaimtemplate-pvc-type">1. volumeClaimTemplate / PVC type<a class="headerlink" href="#1-volumeclaimtemplate-pvc-type" title="Permanent link">&para;</a></h2>
 <p><strong>Status:</strong> Resolved (in current code).</p>
 <p><strong>Summary:</strong> Whether to use a custom <code>VolumeClaimConfig</code> (sizeInGiB + storageClassName) or <code>*v1.PersistentVolumeClaim</code>. If v1alpha1 had already shipped with one type, changing it would be a <strong>serialization-breaking change</strong> requiring v1alpha2.</p>
 <ul>
@@ -788,7 +788,7 @@
 <li><strong>Resolution (from conversation summary):</strong> In PR #2653, <code>volumeClaimTemplate</code> was reverted to <code>*v1.PersistentVolumeClaim</code> to avoid breaking v1alpha1 and stay consistent with existing API surfaces.</li>
 </ul>
 <hr />
-<h2 id="2-relabelconfig-relabelaction"><a href="#2-relabelconfig-relabelaction">2. RelabelConfig / RelabelAction</a></h2>
+<h2 id="2-relabelconfig-relabelaction">2. RelabelConfig / RelabelAction<a class="headerlink" href="#2-relabelconfig-relabelaction" title="Permanent link">&para;</a></h2>
 <p><strong>Status:</strong> Resolved (enum with 11 actions; RelabelActionConfig with type + configs per action). Optional: document that RE2 regex is validated at runtime.</p>
 <p><strong>Summary:</strong> RelabelAction enum must include all Prometheus actions referenced in XValidation and docs (Replace, Keep, Drop, HashMod, LabelMap, LabelDrop, LabelKeep, <strong>Lowercase, Uppercase, KeepEqual, DropEqual</strong>). CEL rule had a malformed string (non-ASCII quote). OpenAPI/CRD enum and descriptions must align.</p>
 <ul>
@@ -798,7 +798,7 @@
 <li><strong>[PR #2463]</strong> CodeRabbit: Add validation for Prometheus label names in <code>sourceLabels</code> (e.g. <code>^[a-zA-Z_][a-zA-Z0-9_]*$</code>); same for <code>Label.key</code> with CEL or pattern.</li>
 </ul>
 <hr />
-<h2 id="3-authorizationconfig-tlsconfig-secretkeyselector"><a href="#3-authorizationconfig-tlsconfig-secretkeyselector">3. AuthorizationConfig / TLSConfig / SecretKeySelector</a></h2>
+<h2 id="3-authorizationconfig-tlsconfig-secretkeyselector">3. AuthorizationConfig / TLSConfig / SecretKeySelector<a class="headerlink" href="#3-authorizationconfig-tlsconfig-secretkeyselector" title="Permanent link">&para;</a></h2>
 <p><strong>Status:</strong> Resolved (TLS cert/key CEL; union with discriminator; SecretKeySelector has no optional field in this API).</p>
 <p><strong>Summary:</strong> Discriminated union for auth (BearerToken, etc.), cert/key both present or both absent for mTLS, enum for certificateVerification and SecretKeySelector.optional. Schema and docs should enforce these.</p>
 <ul>
@@ -807,7 +807,7 @@
 <li><strong>[PR #2653]</strong> CodeRabbit (LGTM-style): TLSConfig XValidation and MinProperties correctly enforce mTLS; AuthorizationConfig uses proper union pattern with discriminator and CEL.</li>
 </ul>
 <hr />
-<h2 id="4-remotewrite"><a href="#4-remotewrite">4. RemoteWrite</a></h2>
+<h2 id="4-remotewrite">4. RemoteWrite<a class="headerlink" href="#4-remotewrite" title="Permanent link">&para;</a></h2>
 <p><strong>Status:</strong> Resolved (Headers as <code>[]PrometheusRemoteWriteHeader</code>; listMapKey=name; auth/TLS in RemoteWriteSpec; name documented when omitted).</p>
 <p><strong>Summary:</strong> Headers (map vs <code>[]PrometheusRemoteWriteHeader</code>), queue/duration fields (explicit units e.g. seconds vs duration strings), URL uniqueness (listMapKey: url vs name), metadataConfig and queue-parameter docs. RemoteWriteSpec auth/TLS was missing in early feedback; later added.</p>
 <ul>
@@ -818,7 +818,7 @@
 <li><strong>[PR #2653]</strong> marioferh (Feb 18): Linked to Prometheus remote write docs in response to a discussion comment.</li>
 </ul>
 <hr />
-<h2 id="5-validation-general"><a href="#5-validation-general">5. Validation (general)</a></h2>
+<h2 id="5-validation-general">5. Validation (general)<a class="headerlink" href="#5-validation-general" title="Permanent link">&para;</a></h2>
 <p><strong>Status:</strong> Mostly resolved (validations in types). Pending: ensure generated OpenAPI/CRDs reflect all markers after <code>make update</code>.</p>
 <p><strong>Summary:</strong> CEL, enum, MinLength/MaxLength, MinItems/MaxItems, pattern, minProperties; align schema with documented constraints. OpenAPI/CRD should reflect kubebuilder markers.</p>
 <ul>
@@ -829,7 +829,7 @@
 <li><strong>[PR #2463]</strong> CodeRabbit: CEL for retention duration format; pattern for enforcedBodySizeLimit and retention; duration/quantity pattern validation.</li>
 </ul>
 <hr />
-<h2 id="6-documentation"><a href="#6-documentation">6. Documentation</a></h2>
+<h2 id="6-documentation">6. Documentation<a class="headerlink" href="#6-documentation" title="Permanent link">&para;</a></h2>
 <p><strong>Status:</strong> Partial. PrometheusConfig.logLevel already says "Prometheus"; no external links. <strong>Pending:</strong> LogLevel type (generic), LogLevel constants (full sentences), pathPrefix v2 example.</p>
 <p><strong>Summary:</strong> GoDoc and CRD descriptions: avoid external links, use "no opinion, platform chooses reasonable default," fix copy-paste (Alertmanager vs Prometheus for logLevel), pathPrefix example (v1 vs v2), scheme "default" vs required.</p>
 <ul>
@@ -842,7 +842,7 @@
 <li><strong>[PR #2463]</strong> CodeRabbit: Documentation says "remote write/read" but only RemoteWrite exists; say "remote write" only or note remote read may be added later.</li>
 </ul>
 <hr />
-<h2 id="7-defaults-and-api-contract"><a href="#7-defaults-and-api-contract">7. Defaults and API contract</a></h2>
+<h2 id="7-defaults-and-api-contract">7. Defaults and API contract<a class="headerlink" href="#7-defaults-and-api-contract" title="Permanent link">&para;</a></h2>
 <p><strong>Status:</strong> Resolved (no fixed default for scheme in schema; "no opinion" wording on optional fields).</p>
 <p><strong>Summary:</strong> Avoid <code>+kubebuilder:default</code> in alpha for flexibility; controller-side defaulting preferred. "No opinion" wording for optional fields.</p>
 <ul>
@@ -850,7 +850,7 @@
 <li><strong>[PR #2630]</strong> CodeRabbit: spec.prometheusConfig default <code>{}</code> in schema—if "unset vs set empty" should be distinguishable for SSA, omit default in source and regenerate.</li>
 </ul>
 <hr />
-<h2 id="8-pathprefix-scheme-staticconfigs"><a href="#8-pathprefix-scheme-staticconfigs">8. pathPrefix / scheme / staticConfigs</a></h2>
+<h2 id="8-pathprefix-scheme-staticconfigs">8. pathPrefix / scheme / staticConfigs<a class="headerlink" href="#8-pathprefix-scheme-staticconfigs" title="Permanent link">&para;</a></h2>
 <p><strong>Status:</strong> Validations and scheme OK. <strong>Pending:</strong> in pathPrefix, change example from <code>/api/v1/alerts</code> to <code>/api/v2/alerts</code> if Alertmanager API only exposes v2.</p>
 <p><strong>Summary:</strong> Allowed values (scheme HTTP/HTTPS), pathPrefix format (trailing slash, no query/fragment), staticConfigs host:port validation and min/max items.</p>
 <ul>
@@ -859,7 +859,7 @@
 <li><strong>[PR #2630]</strong> CodeRabbit: pathPrefix example should use /api/v2/alerts; scheme doc vs required/default.</li>
 </ul>
 <hr />
-<h2 id="9-loglevel"><a href="#9-loglevel">9. LogLevel</a></h2>
+<h2 id="9-loglevel">9. LogLevel<a class="headerlink" href="#9-loglevel" title="Permanent link">&para;</a></h2>
 <p><strong>Status:</strong> Pending. In <code>types_cluster_monitoring.go</code>: (1) <code>LogLevel</code> type (line ~300) still says "emitted by Alertmanager" → use generic wording; (2) LogLevelWarn, LogLevelInfo, LogLevelDebug constants (lines ~308-312) use leading comma → use full sentence (e.g. "LogLevelWarn logs warnings and errors.").</p>
 <p><strong>Summary:</strong> Comment wording (e.g. "LogLevelWarn means…" not ", both warnings…"); shared type doc should not say "Alertmanager" only.</p>
 <ul>
@@ -867,7 +867,7 @@
 <li><strong>[PR #2463]</strong> Multiple: logLevel field and LogLevel type must reference "Prometheus" in prometheusK8sConfig context; shared type doc should be component-agnostic.</li>
 </ul>
 <hr />
-<h2 id="10-process-pr-management"><a href="#10-process-pr-management">10. Process / PR management</a></h2>
+<h2 id="10-process-pr-management">10. Process / PR management<a class="headerlink" href="#10-process-pr-management" title="Permanent link">&para;</a></h2>
 <p><strong>Summary:</strong> PR size, splitting, closing in favor of newer PRs, CI failures (verify-crd-schema, verify-crdify), rebase, conflict markers.</p>
 <ul>
 <li><strong>[PR #2463]</strong> <strong>JoelSpeed</strong> (Sep 16): Conflict markers in the PR; please fix and push correct content.</li>
@@ -881,7 +881,7 @@
 <li><strong>[PR #2653]</strong> needs-rebase, verify-deps, verify-crd-schema, lint, etc. (Mar 5); marioferh force-pushed and pushed multiple fix commits.</li>
 </ul>
 <hr />
-<h2 id="11-bots-automation"><a href="#11-bots-automation">11. Bots / automation</a></h2>
+<h2 id="11-bots-automation">11. Bots / automation<a class="headerlink" href="#11-bots-automation" title="Permanent link">&para;</a></h2>
 <p><strong>Summary:</strong> CodeRabbit actionable vs nitpick vs "Additional comments"; openshift-ci; docstring coverage; kubeapilinter.</p>
 <table>
 <thead>
@@ -910,7 +910,7 @@
 </tbody>
 </table>
 <hr />
-<h2 id="12-other-uncategorized"><a href="#12-other-uncategorized">12. Other / uncategorized</a></h2>
+<h2 id="12-other-uncategorized">12. Other / uncategorized<a class="headerlink" href="#12-other-uncategorized" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>[PR #2463]</strong> <strong>simonpasquier</strong>: Regarding max values, some may be too low; consider leveraging Insights data for current practices.</li>
 <li><strong>[PR #2463]</strong> CodeRabbit: additionalAlertmanagerConfigs listMapKey (e.g. apiVersion vs name); verify minProperties with empty prometheusK8sConfig; listType=atomic vs map for multi-owner (e.g. ACM + cluster admin).</li>
@@ -918,7 +918,7 @@
 <li><strong>[PR #2653]</strong> <strong>marioferh</strong>: @coderabbit ignore (reviews paused).</li>
 </ul>
 <hr />
-<h2 id="comments-remaining-to-address"><a href="#comments-remaining-to-address">Comments remaining to address</a></h2>
+<h2 id="comments-remaining-to-address">Comments remaining to address<a class="headerlink" href="#comments-remaining-to-address" title="Permanent link">&para;</a></h2>
 <p>Summary of what is still pending in code or docs according to the current repo state:</p>
 <ol>
 <li><strong>LogLevel (type and constants)</strong> — <code>config/v1alpha1/types_cluster_monitoring.go</code></li>
@@ -956,7 +956,7 @@
 <li>After changes, run <code>make update</code> (without <code>API_GROUP_VERSIONS</code>) and <code>make verify</code> to ensure OpenAPI and CRDs are up to date and there are no regressions.</li>
 </ol>
 <hr />
-<h2 id="per-pr-index-theme-anchors"><a href="#per-pr-index-theme-anchors">Per-PR index (theme anchors)</a></h2>
+<h2 id="per-pr-index-theme-anchors">Per-PR index (theme anchors)<a class="headerlink" href="#per-pr-index-theme-anchors" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>#2653 (open):</strong> 2 (RelabelConfig), 3 (TLS/Authorization/SecretKeySelector), 4 (RemoteWrite), 5 (Validation), 10 (Process), 11 (Bots), 12 (Other).</li>
 <li><strong>#2463 (closed):</strong> 1 (volumeClaimTemplate refs), 2 (RelabelConfig), 4 (RemoteWrite), 5 (Validation), 6 (Documentation), 8 (pathPrefix/scheme/staticConfigs), 9 (LogLevel), 10 (Process), 11 (Bots), 12 (Other).</li>
@@ -964,7 +964,7 @@
 <li><strong>#2652 (closed):</strong> Short-lived; mostly bot timeline (CodeRabbit review failed—PR closed), openshift-ci, no substantive human comments extracted.</li>
 </ul>
 <hr />
-<h2 id="data-and-limitations"><a href="#data-and-limitations">Data and limitations</a></h2>
+<h2 id="data-and-limitations">Data and limitations<a class="headerlink" href="#data-and-limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>#2653</strong> and <strong>#2463</strong>: Content from existing agent-tools text files (full PR page timeline). Paths: see "Saved PR content (agent-tools)" above.</li>
 <li><strong>#2630</strong>: Fetched via mcp_web_fetch (re-tried and re-saved); saved to agent-tools as <code>57fa43aa-02c1-4fce-a426-3dc504fb404d.txt</code> (4034 lines, 171.5 KB). Same content as earlier fetch; used for theme extraction.</li>
@@ -973,7 +973,7 @@
 <li><strong>Resolutions</strong> mentioned (e.g. volumeClaimTemplate reverted to *v1.PersistentVolumeClaim, listMapKey to name, headers to slice of structs) come from the conversation summary; the PR diffs themselves were not re-checked for current state.</li>
 </ul>
 <hr />
-<h2 id="possible-unresolved-comments"><a href="#possible-unresolved-comments">Possible unresolved comments</a></h2>
+<h2 id="possible-unresolved-comments">Possible unresolved comments<a class="headerlink" href="#possible-unresolved-comments" title="Permanent link">&para;</a></h2>
 <p>Feedback from the PRs that may not yet be fully resolved or that was left open / optional. Worth checking against the current branch and open PR #2653.</p>
 <ul>
 <li>
