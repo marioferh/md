@@ -1,0 +1,830 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation and summaries">
+      
+      
+      
+        <link rel="canonical" href="https://marioferh.github.io/md/pr-comments-summary-prometheus-config-api/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+    
+    
+      
+        <title>PR Comments Summary: Prometheus Config API - md</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pr-comments-summary-prometheus-config-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="md" class="md-header__button md-logo" aria-label="md" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            md
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PR Comments Summary: Prometheus Config API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="md" class="md-nav__button md-logo" aria-label="md" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    md
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pr-prometheus-api-comments-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR Comments Summary (Prometheus Config API)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-volumeclaimtemplate-pvc-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. volumeClaimTemplate / PVC type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-relabelconfig-relabelaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. RelabelConfig / RelabelAction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-authorizationconfig-tlsconfig-secretkeyselector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. AuthorizationConfig / TLSConfig / SecretKeySelector
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-remotewrite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. RemoteWrite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-validation-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Validation (general)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-defaults-and-api-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Defaults and API contract
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-pathprefix-scheme-staticconfigs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. pathPrefix / scheme / staticConfigs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-loglevel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. LogLevel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-process-pr-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Process / PR management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-bots-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Bots / automation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-other-uncategorized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Other / uncategorized
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comments-remaining-to-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comments remaining to address
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#per-pr-index-theme-anchors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-PR index (theme anchors)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-and-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data and limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possible-unresolved-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Possible unresolved comments
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="pr-comments-summary-prometheus-config-api">PR Comments Summary: Prometheus Config API</h1>
+<p><strong>Scope:</strong> Comments extracted and organized from the following pull requests:</p>
+<table>
+<thead>
+<tr>
+<th>PR</th>
+<th>State</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/openshift/api/pull/2653">#2653</a></td>
+<td>Open</td>
+<td>Add prometheusConfig API</td>
+</tr>
+<tr>
+<td><a href="https://github.com/openshift/api/pull/2463">#2463</a></td>
+<td>Closed</td>
+<td>MON-4030: prometheus k8s config API</td>
+</tr>
+<tr>
+<td><a href="https://github.com/openshift/api/pull/2630">#2630</a></td>
+<td>Closed</td>
+<td>Add prometheusConfig API</td>
+</tr>
+<tr>
+<td><a href="https://github.com/openshift/api/pull/2652">#2652</a></td>
+<td>Closed</td>
+<td>Add prometheusConfig API</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Saved PR content (agent-tools):</strong> Raw timeline/content used for this summary is stored under the project's <code>agent-tools</code> folder so it can be re-used without re-fetching:</p>
+<table>
+<thead>
+<tr>
+<th>PR</th>
+<th>File (relative to agent-tools)</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#2653</td>
+<td><code>57b01a20-853e-486e-8ff0-9e4fc86a3056.txt</code></td>
+<td>Open PR; full timeline.</td>
+</tr>
+<tr>
+<td>#2463</td>
+<td><code>73a6375c-b120-4767-83fc-f362a6c75db6.txt</code></td>
+<td>Closed; largest (6308 lines).</td>
+</tr>
+<tr>
+<td>#2630</td>
+<td><code>57fa43aa-02c1-4fce-a426-3dc504fb404d.txt</code></td>
+<td>Closed; 4034 lines (171.5 KB).</td>
+</tr>
+<tr>
+<td>#2652</td>
+<td><code>pr-2652-openshift-api.txt</code></td>
+<td>Closed; short timeline (~170 lines), saved after retry.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="executive-summary">Executive summary</h2>
+<p>The high number of comments comes from (1) <strong>very large PRs</strong> (size/XXL, thousands of lines across types, CRDs, OpenAPI, and tests), (2) <strong>multiple review cycles</strong> across four PRs (2463 → 2630 → 2652 → 2653) with 2463 and 2630 becoming hard to load, (3) <strong>heavy automated feedback</strong> from CodeRabbit (actionable comments, nitpicks, and many "Additional comments" / LGTM-style items), and (4) <strong>many small topics</strong> (validation, docs, types, defaults, remote write, relabel, TLS, volumeClaimTemplate, etc.). Human review from <strong>everettraven</strong> (and JoelSpeed, danielmellado, simonpasquier) drove most of the design decisions; CodeRabbit repeated similar points across CRD variants and files. This document groups feedback <strong>by theme</strong> so a follow-up AI or human can see what was asked per topic and what was resolved.</p>
+<hr />
+<h2 id="1-volumeclaimtemplate-pvc-type">1. volumeClaimTemplate / PVC type</h2>
+<p><strong>Status:</strong> Resolved (in current code).</p>
+<p><strong>Summary:</strong> Whether to use a custom <code>VolumeClaimConfig</code> (sizeInGiB + storageClassName) or <code>*v1.PersistentVolumeClaim</code>. If v1alpha1 had already shipped with one type, changing it would be a <strong>serialization-breaking change</strong> requiring v1alpha2.</p>
+<ul>
+<li><strong>[PR #2630]</strong> <strong>everettraven</strong> (Dec 17, 2025): If changing the type changes serialization, it is <em>not</em> OK in v1alpha1 if the API has shipped. Older clients would fail to serialize. The correct approach is to up-version from v1alpha1 to v1alpha2. Re: splitting into smaller changes, leaving that to the author; this PR is large but manageable.</li>
+<li><strong>[PR #2630]</strong> <strong>danielmellado</strong> (Dec 17, 2025): verify-crd-schema and verify-crdify fail because we intentionally changed volumeClaimTemplate from full <code>corev1.PersistentVolumeClaim</code> to <code>VolumeClaimConfig</code> for better admission-time validation and to avoid exposing ~40 PVC fields. As TechPreview v1alpha1, breaking changes are allowed; both tools say override is appropriate for intentional changes. Asking everettraven for another proposal; plan to split into smaller changes.</li>
+<li><strong>[PR #2630]</strong> CodeRabbit (multiple): Noted that VolumeClaimConfig is well-designed and consistent across Alertmanager and Prometheus; some comments later clarified that this is a <em>new</em> API introduction (no prior shipped type), so no version bump needed.</li>
+<li><strong>Resolution (from conversation summary):</strong> In PR #2653, <code>volumeClaimTemplate</code> was reverted to <code>*v1.PersistentVolumeClaim</code> to avoid breaking v1alpha1 and stay consistent with existing API surfaces.</li>
+</ul>
+<hr />
+<h2 id="2-relabelconfig-relabelaction">2. RelabelConfig / RelabelAction</h2>
+<p><strong>Status:</strong> Resolved (enum with 11 actions; RelabelActionConfig with type + configs per action). Optional: document that RE2 regex is validated at runtime.</p>
+<p><strong>Summary:</strong> RelabelAction enum must include all Prometheus actions referenced in XValidation and docs (Replace, Keep, Drop, HashMod, LabelMap, LabelDrop, LabelKeep, <strong>Lowercase, Uppercase, KeepEqual, DropEqual</strong>). CEL rule had a malformed string (non-ASCII quote). OpenAPI/CRD enum and descriptions must align.</p>
+<ul>
+<li><strong>[PR #2653]</strong> <strong>coderabbitai[bot]</strong> (Jan 16, 2026): RelabelAction enum is missing Lowercase, Uppercase, KeepEqual, DropEqual; update enum and RelabelConfig.action/targetLabel docs so enum and XValidation align in types_cluster_monitoring.go, OpenAPI, and all three payload CRDs.</li>
+<li><strong>[PR #2630]</strong> <strong>coderabbitai[bot]</strong> (Jan 9, 2026): LogLevel constant comments (LogLevelWarn, LogLevelInfo, LogLevelDebug) should be full sentences without leading commas; CEL rule for targetLabel had malformed quoting (e.g. <code>self.targetLabel != "</code>); fix with ASCII empty-string check and correct YAML quoting in DevPreviewNoUpgrade and TechPreviewNoUpgrade CRDs.</li>
+<li><strong>[PR #2630]</strong> CodeRabbit: RelabelConfig regex field is not validated at admission time (invalid RE2 only fails at runtime); consider documenting that regex validation is at runtime or adding operator-level validation.</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: Add validation for Prometheus label names in <code>sourceLabels</code> (e.g. <code>^[a-zA-Z_][a-zA-Z0-9_]*$</code>); same for <code>Label.key</code> with CEL or pattern.</li>
+</ul>
+<hr />
+<h2 id="3-authorizationconfig-tlsconfig-secretkeyselector">3. AuthorizationConfig / TLSConfig / SecretKeySelector</h2>
+<p><strong>Status:</strong> Resolved (TLS cert/key CEL; union with discriminator; SecretKeySelector has no optional field in this API).</p>
+<p><strong>Summary:</strong> Discriminated union for auth (BearerToken, etc.), cert/key both present or both absent for mTLS, enum for certificateVerification and SecretKeySelector.optional. Schema and docs should enforce these.</p>
+<ul>
+<li><strong>[PR #2630]</strong> CodeRabbit (Dec 17): TLS config has minProperties: 1 but doesn't enforce cert and key together; suggest CEL rule <code>(has(self.cert) &amp;&amp; has(self.key)) || (!has(self.cert) &amp;&amp; !has(self.key))</code>.</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: Document the <code>optional</code> field in SecretKeySelector (Required/Optional); consider enum + fail-closed handling for SecretKeySelector.optional and TLSConfig.certificateVerification in OpenAPI.</li>
+<li><strong>[PR #2653]</strong> CodeRabbit (LGTM-style): TLSConfig XValidation and MinProperties correctly enforce mTLS; AuthorizationConfig uses proper union pattern with discriminator and CEL.</li>
+</ul>
+<hr />
+<h2 id="4-remotewrite">4. RemoteWrite</h2>
+<p><strong>Status:</strong> Resolved (Headers as <code>[]PrometheusRemoteWriteHeader</code>; listMapKey=name; auth/TLS in RemoteWriteSpec; name documented when omitted).</p>
+<p><strong>Summary:</strong> Headers (map vs <code>[]PrometheusRemoteWriteHeader</code>), queue/duration fields (explicit units e.g. seconds vs duration strings), URL uniqueness (listMapKey: url vs name), metadataConfig and queue-parameter docs. RemoteWriteSpec auth/TLS was missing in early feedback; later added.</p>
+<ul>
+<li><strong>[PR #2630]</strong> CodeRabbit (Jan 9): Consider whether <strong>url</strong> is the right listMapKey for remoteWrite: same URL with different configs (e.g. relabeling, auth) would be merged by SSA. Suggest <strong>name</strong> as listMapKey with url required but not unique; document if one-config-per-URL is intentional.</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: RemoteWriteSpec description says "including URL, authentication, and relabeling" but schema only had URL, name, timeout, relabel configs—no auth/TLS; add auth/TLS or clarify.</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: Clarify RemoteWriteSpec <strong>name</strong> when optional: what happens when omitted, whether system auto-generates, how to troubleshoot without names.</li>
+<li><strong>[PR #2463]</strong> everettraven (documented in summary): Prefer headers as <code>[]struct { Name, Value string }</code> for validation of header names (e.g. reserved); duration strings replaced with explicit units (e.g. batchSendDeadlineSeconds); listMapKey changed from url to name.</li>
+<li><strong>[PR #2653]</strong> marioferh (Feb 18): Linked to Prometheus remote write docs in response to a discussion comment.</li>
+</ul>
+<hr />
+<h2 id="5-validation-general">5. Validation (general)</h2>
+<p><strong>Status:</strong> Mostly resolved (validations in types). Pending: ensure generated OpenAPI/CRDs reflect all markers after <code>make update</code>.</p>
+<p><strong>Summary:</strong> CEL, enum, MinLength/MaxLength, MinItems/MaxItems, pattern, minProperties; align schema with documented constraints. OpenAPI/CRD should reflect kubebuilder markers.</p>
+<ul>
+<li><strong>[PR #2653]</strong> <strong>coderabbitai[bot]</strong>: Add schema validation for scheme/pathPrefix/staticConfigs (Enum, Pattern, MinItems/MaxItems); align schema with documented constraints for collectionProfile, logLevel, externalLabels, remoteWrite, tolerations, topologySpreadConstraints.</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: Many OpenAPI descriptions document enums/size limits that are not in the schema; add kubebuilder validations so OpenAPI has enum, minItems/maxItems, min/max.</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: AdditionalAlertmanagerConfig—staticConfigs min/max, name DNS subdomain, pathPrefix pattern, scheme enum, timeoutSeconds range; RelabelConfig action enum and field constraints; RemoteWriteSpec and Retention min/max.</li>
+<li><strong>[PR #2630]</strong> CodeRabbit: Add negative tests for relabel targetLabel (action Replace/HashMod without targetLabel) and for malformed staticConfigs.</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: CEL for retention duration format; pattern for enforcedBodySizeLimit and retention; duration/quantity pattern validation.</li>
+</ul>
+<hr />
+<h2 id="6-documentation">6. Documentation</h2>
+<p><strong>Status:</strong> Partial. PrometheusConfig.logLevel already says "Prometheus"; no external links. <strong>Pending:</strong> LogLevel type (generic), LogLevel constants (full sentences), pathPrefix v2 example.</p>
+<p><strong>Summary:</strong> GoDoc and CRD descriptions: avoid external links, use "no opinion, platform chooses reasonable default," fix copy-paste (Alertmanager vs Prometheus for logLevel), pathPrefix example (v1 vs v2), scheme "default" vs required.</p>
+<ul>
+<li><strong>[PR #2463]</strong> CodeRabbit (repeated): <strong>logLevel</strong> description says "logs emitted by Alertmanager" but field is under prometheusK8sConfig; change to "Prometheus" in types_cluster_monitoring.go and regenerate.</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: <strong>LogLevel</strong> type is shared by Alertmanager and Prometheus; godoc should be generic, e.g. "monitoring components (such as Alertmanager and Prometheus)."</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: Remove <strong>external documentation links</strong> from PrometheusConfig; API should be self-contained.</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: Use standard defaulting phrase: "When omitted, this means the user has no opinion and the platform is left to choose reasonable defaults, which are subject to change over time."</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: <strong>pathPrefix</strong> example uses <code>/api/v1/alerts</code> but apiVersion only allows v2; use <code>/api/v2/alerts</code>. <strong>scheme</strong> comment says "default value is http" but field is +required with no +kubebuilder:default; either add default or update doc (e.g. "Possible values are <code>http</code> or <code>https</code>").</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: Remove "This is a custom type to allow for admission time validations" from user-facing bearerToken doc. Align volumeClaimTemplate description between Prometheus and Alertmanager (e.g. "data will not persist").</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: Documentation says "remote write/read" but only RemoteWrite exists; say "remote write" only or note remote read may be added later.</li>
+</ul>
+<hr />
+<h2 id="7-defaults-and-api-contract">7. Defaults and API contract</h2>
+<p><strong>Status:</strong> Resolved (no fixed default for scheme in schema; "no opinion" wording on optional fields).</p>
+<p><strong>Summary:</strong> Avoid <code>+kubebuilder:default</code> in alpha for flexibility; controller-side defaulting preferred. "No opinion" wording for optional fields.</p>
+<ul>
+<li><strong>[PR #2630]</strong> (from conversation summary) <strong>everettraven:</strong> <code>+kubebuilder:default=HTTP</code> for scheme in v1alpha1 locks in a default; prefer controller defaulting.</li>
+<li><strong>[PR #2630]</strong> CodeRabbit: spec.prometheusConfig default <code>{}</code> in schema—if "unset vs set empty" should be distinguishable for SSA, omit default in source and regenerate.</li>
+</ul>
+<hr />
+<h2 id="8-pathprefix-scheme-staticconfigs">8. pathPrefix / scheme / staticConfigs</h2>
+<p><strong>Status:</strong> Validations and scheme OK. <strong>Pending:</strong> in pathPrefix, change example from <code>/api/v1/alerts</code> to <code>/api/v2/alerts</code> if Alertmanager API only exposes v2.</p>
+<p><strong>Summary:</strong> Allowed values (scheme HTTP/HTTPS), pathPrefix format (trailing slash, no query/fragment), staticConfigs host:port validation and min/max items.</p>
+<ul>
+<li><strong>[PR #2463]</strong> CodeRabbit: pathPrefix validation—disallow pathPrefix <code>/</code> producing <code>//api/v1/alerts</code> unless explicitly allowed; scheme enum; staticConfigs minItems/maxItems and host:port pattern.</li>
+<li><strong>[PR #2630]</strong> CodeRabbit: staticConfigs validation using <code>isURL('http://' + self)</code> accepts "host:port/path" or "host:port?query"; description says only host:port—optional stricter validation or document.</li>
+<li><strong>[PR #2630]</strong> CodeRabbit: pathPrefix example should use /api/v2/alerts; scheme doc vs required/default.</li>
+</ul>
+<hr />
+<h2 id="9-loglevel">9. LogLevel</h2>
+<p><strong>Status:</strong> Pending. In <code>types_cluster_monitoring.go</code>: (1) <code>LogLevel</code> type (line ~300) still says "emitted by Alertmanager" → use generic wording; (2) LogLevelWarn, LogLevelInfo, LogLevelDebug constants (lines ~308-312) use leading comma → use full sentence (e.g. "LogLevelWarn logs warnings and errors.").</p>
+<p><strong>Summary:</strong> Comment wording (e.g. "LogLevelWarn means…" not ", both warnings…"); shared type doc should not say "Alertmanager" only.</p>
+<ul>
+<li><strong>[PR #2630]</strong> <strong>coderabbitai[bot]</strong> (Jan 9): LogLevel constant comments (LogLevelWarn, LogLevelInfo, LogLevelDebug) — remove leading commas, make full sentences matching LogLevelError (e.g. "LogLevelWarn logs warnings and errors.").</li>
+<li><strong>[PR #2463]</strong> Multiple: logLevel field and LogLevel type must reference "Prometheus" in prometheusK8sConfig context; shared type doc should be component-agnostic.</li>
+</ul>
+<hr />
+<h2 id="10-process-pr-management">10. Process / PR management</h2>
+<p><strong>Summary:</strong> PR size, splitting, closing in favor of newer PRs, CI failures (verify-crd-schema, verify-crdify), rebase, conflict markers.</p>
+<ul>
+<li><strong>[PR #2463]</strong> <strong>JoelSpeed</strong> (Sep 16): Conflict markers in the PR; please fix and push correct content.</li>
+<li><strong>[PR #2463]</strong> <strong>marioferh</strong>: Fixed mixed commit; force-pushed.</li>
+<li><strong>[PR #2463]</strong> <strong>danielmellado</strong> (Dec 2): Addressed comments, asking everettraven for a fresh review.</li>
+<li><strong>[PR #2463]</strong> <strong>everettraven</strong> (Jan 8): Closing in favor of #2630. /close</li>
+<li><strong>[PR #2463]</strong> <strong>everettraven</strong> (Jan 12): danielmellado spun this into #2630 because the review was so large the PR took a long time to load.</li>
+<li><strong>[PR #2653]</strong> Description: "This pr replaces https://github.com/openshift/api/pull/2630 because is broken."</li>
+<li><strong>[PR #2630]</strong> <strong>danielmellado</strong>: Plan to split into smaller changes; asking everettraven re volumeClaimTemplate and overrides.</li>
+<li><strong>[PR #2653]</strong> <strong>everettraven</strong> (Jan 28): Diff since last review was bigger than expected; didn't finish full review; will return next morning.</li>
+<li><strong>[PR #2653]</strong> needs-rebase, verify-deps, verify-crd-schema, lint, etc. (Mar 5); marioferh force-pushed and pushed multiple fix commits.</li>
+</ul>
+<hr />
+<h2 id="11-bots-automation">11. Bots / automation</h2>
+<p><strong>Summary:</strong> CodeRabbit actionable vs nitpick vs "Additional comments"; openshift-ci; docstring coverage; kubeapilinter.</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CodeRabbit</strong></td>
+<td>Multiple review passes per PR; "Actionable comments" (2–8+), "Nitpick" (1–5+), "Duplicate comments" (2–11), "Additional comments" (15–54). Many LGTM-style or "no action needed" items. Focus on schema vs doc alignment, validation in OpenAPI/CRD, and consistency across CRD variants.</td>
+</tr>
+<tr>
+<td><strong>openshift-ci[bot]</strong></td>
+<td>API conventions reminder, approval notifier, size/XXL label, assignees (everettraven, JoelSpeed).</td>
+</tr>
+<tr>
+<td><strong>Docstring coverage</strong></td>
+<td>0.00% reported; threshold 80%. Resolution: write docstrings for missing functions.</td>
+</tr>
+<tr>
+<td><strong>golangci-lint / kubeapilinter</strong></td>
+<td>Error: "unable to load custom analyzer kubeapilinter: plugin: not implemented" — tool/config issue, not fixed in PRs.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="12-other-uncategorized">12. Other / uncategorized</h2>
+<ul>
+<li><strong>[PR #2463]</strong> <strong>simonpasquier</strong>: Regarding max values, some may be too low; consider leveraging Insights data for current practices.</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: additionalAlertmanagerConfigs listMapKey (e.g. apiVersion vs name); verify minProperties with empty prometheusK8sConfig; listType=atomic vs map for multi-owner (e.g. ACM + cluster admin).</li>
+<li><strong>[PR #2463]</strong> CodeRabbit: retentionSize vs volumeClaimTemplate storage—operator check to warn/error if retention exceeds PVC size.</li>
+<li><strong>[PR #2653]</strong> <strong>marioferh</strong>: @coderabbit ignore (reviews paused).</li>
+</ul>
+<hr />
+<h2 id="comments-remaining-to-address">Comments remaining to address</h2>
+<p>Summary of what is still pending in code or docs according to the current repo state:</p>
+<ol>
+<li><strong>LogLevel (type and constants)</strong> — <code>config/v1alpha1/types_cluster_monitoring.go</code></li>
+<li><strong><code>LogLevel</code> type</strong> (approx. line 300): The godoc says "verbosity of logs emitted by <strong>Alertmanager</strong>". It should be generic, e.g.: "verbosity of logs emitted by monitoring components (such as Alertmanager and Prometheus)."</li>
+<li>
+<p><strong>Constants</strong> (approx. lines 308-312): LogLevelWarn, LogLevelInfo, and LogLevelDebug use a leading comma ("LogLevelWarn, both warnings…"). Change to full sentences, e.g.: "LogLevelWarn logs warnings and errors.", "LogLevelInfo logs general information, warnings, and errors.", "LogLevelDebug logs detailed debugging information."</p>
+</li>
+<li>
+<p><strong>pathPrefix (example in docs)</strong> — <code>config/v1alpha1/types_cluster_monitoring.go</code> (approx. lines 782, 784)</p>
+</li>
+<li>
+<p>The example uses <code>/api/v1/alerts</code>. If the exposed Alertmanager API is v2 only, change to <code>/api/v2/alerts</code> in both places (pathPrefix and the "double slashes" note).</p>
+</li>
+<li>
+<p><strong>Docstring coverage</strong></p>
+</li>
+<li>
+<p>CodeRabbit reports 0% docstring coverage (80% threshold). Add docstrings to functions that still lack them (per the repo linter).</p>
+</li>
+<li>
+<p><strong>Optional — RelabelConfig regex validation</strong></p>
+</li>
+<li>
+<p>Document in the RelabelConfig <code>regex</code> field that RE2 syntax is validated at <strong>runtime</strong> by Prometheus, not at admission, so it is clear to users.</p>
+</li>
+<li>
+<p><strong>Optional — Negative tests</strong></p>
+</li>
+<li>
+<p>Add tests that fail when <code>action</code> is Replace or HashMod but <code>targetLabel</code> is missing, and when <code>staticConfigs</code> has invalid format (host:port), to ensure CEL rules are applied correctly.</p>
+</li>
+<li>
+<p><strong>CI / verify</strong></p>
+</li>
+<li>After changes, run <code>make update</code> (without <code>API_GROUP_VERSIONS</code>) and <code>make verify</code> to ensure OpenAPI and CRDs are up to date and there are no regressions.</li>
+</ol>
+<hr />
+<h2 id="per-pr-index-theme-anchors">Per-PR index (theme anchors)</h2>
+<ul>
+<li><strong>#2653 (open):</strong> 2 (RelabelConfig), 3 (TLS/Authorization/SecretKeySelector), 4 (RemoteWrite), 5 (Validation), 10 (Process), 11 (Bots), 12 (Other).</li>
+<li><strong>#2463 (closed):</strong> 1 (volumeClaimTemplate refs), 2 (RelabelConfig), 4 (RemoteWrite), 5 (Validation), 6 (Documentation), 8 (pathPrefix/scheme/staticConfigs), 9 (LogLevel), 10 (Process), 11 (Bots), 12 (Other).</li>
+<li><strong>#2630 (closed):</strong> 1 (volumeClaimTemplate/PVC), 2 (RelabelConfig), 3 (TLS/Authorization), 5 (Validation), 6 (Documentation), 7 (Defaults), 8 (pathPrefix/scheme), 9 (LogLevel), 10 (Process), 11 (Bots).</li>
+<li><strong>#2652 (closed):</strong> Short-lived; mostly bot timeline (CodeRabbit review failed—PR closed), openshift-ci, no substantive human comments extracted.</li>
+</ul>
+<hr />
+<h2 id="data-and-limitations">Data and limitations</h2>
+<ul>
+<li><strong>#2653</strong> and <strong>#2463</strong>: Content from existing agent-tools text files (full PR page timeline). Paths: see "Saved PR content (agent-tools)" above.</li>
+<li><strong>#2630</strong>: Fetched via mcp_web_fetch (re-tried and re-saved); saved to agent-tools as <code>57fa43aa-02c1-4fce-a426-3dc504fb404d.txt</code> (4034 lines, 171.5 KB). Same content as earlier fetch; used for theme extraction.</li>
+<li><strong>#2652</strong>: Fetched via mcp_web_fetch (re-tried and saved); saved to agent-tools as <code>pr-2652-openshift-api.txt</code> (~170 lines). PR was closed very quickly; only bot/automation comments and no detailed human review in the captured content.</li>
+<li><strong>Inline review comments</strong> attached to specific lines in the "Files changed" view may not appear in the main timeline used here; some everettraven "reviewed: commented" events are present but the full inline body is not always in the same format. Where specific file/line references appeared in CodeRabbit or quoted replies, they were used in the theme sections above.</li>
+<li><strong>Resolutions</strong> mentioned (e.g. volumeClaimTemplate reverted to *v1.PersistentVolumeClaim, listMapKey to name, headers to slice of structs) come from the conversation summary; the PR diffs themselves were not re-checked for current state.</li>
+</ul>
+<hr />
+<h2 id="possible-unresolved-comments">Possible unresolved comments</h2>
+<p>Feedback from the PRs that may not yet be fully resolved or that was left open / optional. Worth checking against the current branch and open PR #2653.</p>
+<ul>
+<li>
+<p><strong>OpenAPI / generated schema vs Go types</strong> — Several CodeRabbit comments asked for enum, min/max, and pattern constraints to appear in the generated OpenAPI and CRDs. Resolution depends on <code>make update</code> and generator behavior; worth confirming that all kubebuilder markers are reflected in the payload CRDs and <code>openapi/openapi.json</code>.</p>
+</li>
+<li>
+<p><strong>SecretKeySelector <code>optional</code> field</strong> — CodeRabbit (PR #2463) asked to document a Required/Optional field and use enum + fail-closed handling. The current <code>SecretKeySelector</code> in this repo has only <code>name</code> and <code>key</code>; if another API or a different version has <code>optional</code>, that comment may apply there or may have been dropped by design.</p>
+</li>
+<li>
+<p><strong>additionalAlertmanagerConfigs listMapKey</strong> — Discussion about using <code>name</code> (or a composite key) vs <code>apiVersion</code> for list uniqueness and server-side apply. Unclear if the final choice was reflected in the CRD and whether multi-owner (e.g. ACM + cluster admin) is supported.</p>
+</li>
+<li>
+<p><strong>listType=atomic vs map for additionalAlertmanagerConfigs</strong> — Comment that atomic does not work well with SSA when multiple controllers manage entries; may still be a limitation or may have been accepted as-is.</p>
+</li>
+<li>
+<p><strong>retentionSize vs volumeClaimTemplate</strong> — Suggestion to add a validation or operator check when retention size exceeds PVC capacity. May be operator-side only and not in this API repo.</p>
+</li>
+<li>
+<p><strong>Max values (e.g. list sizes, retention)</strong> — simonpasquier noted some max values may be too low and suggested using Insights data; no concrete change was specified. May still be open for product decision.</p>
+</li>
+<li>
+<p><strong>stricter staticConfigs validation</strong> — CodeRabbit noted that <code>isURL('http://' + self)</code> accepts host:port/path or host:port?query while the description says only host:port. Optional stricter CEL or doc clarification may still be pending.</p>
+</li>
+<li>
+<p><strong>Prometheus label name pattern on <code>Label.key</code> and <code>sourceLabels</code></strong> — Some comments asked for <code>^[a-zA-Z_][a-zA-Z0-9_]*$</code> (or similar) validation. The current types may allow UTF-8 or a different rule; worth confirming whether this was intentionally not added or is still desired.</p>
+</li>
+<li>
+<p><strong>Docstring coverage (0% vs 80% threshold)</strong> — CodeRabbit and pre-merge checks reported this; resolution is to add docstrings. May still be outstanding on the open PR.</p>
+</li>
+<li>
+<p><strong>everettraven inline review threads</strong> — Some "reviewed: commented" events may contain unresolved inline comments on specific lines. The timeline used here does not always include full inline bodies; the open PR should be scanned for any remaining requested changes.</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
